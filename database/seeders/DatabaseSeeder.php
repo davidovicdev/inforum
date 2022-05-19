@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $seeders = [
-            AdditionalDescriptionSeeder::class
+            AdditionalDescriptionSeeder::class,
+            UsersSeeder::class
         ];
         foreach ($seeders as $seeder) {
             $this->call($seeder);

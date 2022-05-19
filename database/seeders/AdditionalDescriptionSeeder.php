@@ -18,7 +18,7 @@ class AdditionalDescriptionSeeder extends Seeder
     {
         $data = [
             "cities" => ["Belgrade", "New York", "Tokyo", "Paris", "London", "Berlin", "Moscow", "Zagreb", "Ljubljana", "Prague", "Canberra", "Melbourne", "Bangkok", "Peking", "Shagai", "Kairo", "Dubai", "Abu Dhabi"],
-            "professions" => ["Artist", "Astronaut", "Chef", "Construction Worker", "Firefighter", "Doctor", "Police", "Teacher", "Veterinarian", "Actor", "Pilot", "Nurse", "Engineer", "Barber", "Lifeguard", "Programmer", "Electrician", "Cashier", "Taxi driver", "Claner", "Model", "Dancer", "Singer", "Other"],
+            "professions" => ["Artist", "Astronaut", "Chef", "Construction worker", "Firefighter", "Doctor", "Police", "Teacher", "Veterinarian", "Actor", "Pilot", "Nurse", "Engineer", "Barber", "Lifeguard", "Programmer", "Electrician", "Cashier", "Taxi driver", "Claner", "Model", "Dancer", "Singer", "Other"],
             "interested_in" => ["Man", "Woman"],
             "status_of_relationship" => ["Single", "Engaged", "Married"],
             "gender" => ["Male", "Female"],
