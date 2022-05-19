@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $seeders = [
             AdditionalDescriptionSeeder::class,
-            UsersSeeder::class
+            UsersSeeder::class,
+            CommentsSeeder::class
         ];
         foreach ($seeders as $seeder) {
             $this->call($seeder);
