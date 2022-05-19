@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $seeders = [
             AdditionalDescriptionSeeder::class,
             UsersSeeder::class,
-            CommentsSeeder::class
+            CommentsSeeder::class,
+            ForumsSeeder::class
         ];
         foreach ($seeders as $seeder) {
             $this->call($seeder);
