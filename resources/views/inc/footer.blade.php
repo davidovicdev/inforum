@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start text-white bg-dark fixed-bottom">
+<footer class="text-center text-lg-start text-white bg-dark">
     <!-- Grid container -->
     <div class="container-fluid p-4 pb-0">
         <!-- Section: Links -->

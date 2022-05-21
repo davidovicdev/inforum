@@ -38,7 +38,7 @@ class UsersSeeder extends Seeder
             "email" => "admin@gmail.com",
             "password" => md5("pass123"),
             "is_admin" => 1,
-            "is_active" => 0,
+            "is_active" => 1,
             "avatar" =>  null,
             "about_me_description" => null,
             "date_of_birth" => "1999-07-27 11:00:00",
