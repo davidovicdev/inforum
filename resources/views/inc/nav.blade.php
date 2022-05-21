@@ -23,7 +23,7 @@
                     @endforeach
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('users.show', session('user')->id) }}">My
+                        <a class="nav-link text-light" href="{{ route('users.myProfile') }}">My
                             profile</a>
                     </li>
                     <li class="nav-item">

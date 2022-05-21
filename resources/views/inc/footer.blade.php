@@ -39,17 +39,18 @@
 
         <hr class="mb-4" />
 
-        <!-- Section: CTA -->
-        <section class="">
-            <p class="d-flex justify-content-center align-items-center">
-                <span class="me-3">Register for free</span>
-                <button type="button" class="btn btn-outline-light btn-rounded">
-                    Sign up!
-                </button>
-            </p>
-        </section>
-        <!-- Section: CTA -->
-
+        <!-- Section: Register button -->
+        @if (!session()->has('user'))
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Register for free</span>
+                    <a href="{{ route('auth.register') }}" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </a>
+                </p>
+            </section>
+        @endif
+        <!-- Section: Register button -->
         <!-- Copyright -->
         <div class="text-center p-3 bg-dark">
             © 2022 Copyright:

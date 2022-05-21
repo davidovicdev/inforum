@@ -15,4 +15,5 @@ Route::post("/login", [AuthController::class, "doLogin"])->name("auth.doLogin");
 Route::get("/register", [AuthController::class, "register"])->name("auth.register");
 Route::middleware("isLogged")->group(function () {
     Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
+    Route::get("/myprofile", [UserController::class, "myProfile"])->name("users.myProfile");
 });

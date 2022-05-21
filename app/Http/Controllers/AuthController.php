@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = User::where("email", $request->email)->where("password", md5($request->password))->first();
+            $user = User::select(["id", "username", "email", "is_admin"])->where("email", $request->email)->where("password", md5($request->password))->first();
             if ($user) {
                 session()->put("user", $user);
                 return redirect()->route("index");
