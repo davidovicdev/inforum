@@ -1,14 +1,14 @@
 @php
 $links = [
-    'home' => ['Home', '/home'],
-    'users' => ['Users', '/users.index'],
-    'contact' => ['Contact', '/contact.index'],
-    'about' => ['About', '/about'],
+    'home' => ['Home', 'index'],
+    'users' => ['Users', 'users.index'],
+    'contact' => ['Contact', 'contact'],
+    'about' => ['About', 'about'],
+    'aboutAuthor' => ['About author', 'aboutAuthor'],
 ];
 $authLinks = [
-    'login' => ['Login', '/auth.login'],
-    'register' => ['Register', '/auth.register'],
-    'logout' => ['Logout', '/auth.logout'],
+    'login' => ['Login', 'auth.login'],
+    'register' => ['Register', 'auth.register'],
 ];
 @endphp
 <!DOCTYPE html>
@@ -16,16 +16,17 @@ $authLinks = [
 
 <head>
     @extends('inc.head')
-</head>
 
-<body>
-    @include('inc.nav')
-    <div class="container">
-        @yield('content')
-    </div>
-    @include('inc.footer')
-    @include('inc.scripts')
-    @yield('additionalScripts')
-</body>
+    <head>
+
+    <body>
+        @include('inc.nav')
+        <div class="container pt-5">
+            @yield('content')
+        </div>
+        @include('inc.footer')
+        @include('inc.scripts')
+        @yield('additionalScripts')
+    </body>
 
 </html>

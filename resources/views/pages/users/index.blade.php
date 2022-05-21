@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title')
-    Home
+    Users
 @endsection
 @section('content')
-    <h1>HOMEPAGE</h1>
+    <h1>LIST OF USERS</h1>
 @endsection

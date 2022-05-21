@@ -9,7 +9,6 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">FOOTER CONTENT</h5>
-
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Molestiae modi cum ipsam ad, illo possimus laborum ut
@@ -25,7 +24,7 @@
                     <ul class="list-unstyled mb-0">
                         @foreach ($links as $link)
                             <li class="nav-item">
-                                <a class="nav-link" href="">{{ $link[0] }}</a>
+                                <a class="nav-link" href="{{ route("$link[1]") }}">{{ $link[0] }}</a>
                             </li>
                         @endforeach
                     </ul>

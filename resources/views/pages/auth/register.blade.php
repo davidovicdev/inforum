@@ -1,7 +1,6 @@
 @extends('layout')
 @section('title')
-    Home
+    Register
 @endsection
 @section('content')
-    <h1>HOMEPAGE</h1>
 @endsection
