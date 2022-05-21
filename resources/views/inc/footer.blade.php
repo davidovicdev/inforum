@@ -1,59 +1,62 @@
- <!----------- Footer ------------>
- <footer class="footer-bs">
-     <div class="row">
-         <div class="col-md-3 footer-brand animated fadeInLeft">
-             <h2>Logo</h2>
-             <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies.
-                 Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi
-                 ut sem.</p>
-             <p>© 2045 Bootstrap, All rights reserved</p>
-         </div>
-         <div class="col-md-4 footer-nav animated fadeInUp">
-             <h4>Menu —</h4>
-             <div class="col-md-6">
-                 <ul class="pages">
-                     <li><a href="#">Travel</a></li>
-                     <li><a href="#">Nature</a></li>
-                     <li><a href="#">Explores</a></li>
-                     <li><a href="#">Science</a></li>
-                     <li><a href="#">Advice</a></li>
-                 </ul>
-             </div>
-             <div class="col-md-6">
-                 <ul class="list">
-                     <li><a href="#">About Us</a></li>
-                     <li><a href="#">Contacts</a></li>
-                     <li><a href="#">Terms & Condition</a></li>
-                     <li><a href="#">Privacy Policy</a></li>
-                 </ul>
-             </div>
-         </div>
-         <div class="col-md-2 footer-social animated fadeInDown">
-             <h4>Follow Us</h4>
-             <ul>
-                 <li><a href="#">Facebook</a></li>
-                 <li><a href="#">Twitter</a></li>
-                 <li><a href="#">Instagram</a></li>
-                 <li><a href="#">RSS</a></li>
-             </ul>
-         </div>
-         <div class="col-md-3 footer-ns animated fadeInRight">
-             <h4>Newsletter</h4>
-             <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
-             <p>
-             <div class="input-group">
-                 <input type="text" class="form-control" placeholder="Search for...">
-                 <span class="input-group-btn">
-                     <button class="btn btn-default" type="button"><span
-                             class="glyphicon glyphicon-envelope"></span></button>
-                 </span>
-             </div><!-- /input-group -->
-             </p>
-         </div>
-     </div>
- </footer>
+<!-- Footer -->
+<footer class="text-center text-lg-start text-white bg-dark fixed-bottom">
+    <!-- Grid container -->
+    <div class="container-fluid p-4 pb-0">
+        <!-- Section: Links -->
+        <section class="">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">FOOTER CONTENT</h5>
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Molestiae modi cum ipsam ad, illo possimus laborum ut
+                        reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
+                        Reiciendis assumenda iusto sapiente inventore animi?
+                    </p>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled mb-0">
+                        @foreach ($links as $link)
+                            <li class="nav-item">
+                                <a class="nav-link" href="">{{ $link[0] }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!--Grid column-->
 
 
+            </div>
+            <!--Grid row-->
+        </section>
+        <!-- Section: Links -->
 
- <footer class="credit">Author: Prince J. Sargbah - Distributed By: <a title="Awesome web design code & scripts"
-         href="https://www.codehim.com?source=demo-page" target="_blank">CodeHim</a></footer>
+        <hr class="mb-4" />
+
+        <!-- Section: CTA -->
+        <section class="">
+            <p class="d-flex justify-content-center align-items-center">
+                <span class="me-3">Register for free</span>
+                <button type="button" class="btn btn-outline-light btn-rounded">
+                    Sign up!
+                </button>
+            </p>
+        </section>
+        <!-- Section: CTA -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3 bg-dark">
+            © 2022 Copyright:
+            <a class="text-white" href="https://www.linkedin.com/in/matija-davidovic-6994a2236/">Matija
+                Davidović</a>
+        </div>
+        <!-- Copyright -->
+</footer>
+<!-- Footer -->

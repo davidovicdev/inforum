@@ -1,3 +1,16 @@
+@php
+$links = [
+    'home' => ['Home', '/home'],
+    'users' => ['Users', '/users.index'],
+    'contact' => ['Contact', '/contact.index'],
+    'about' => ['About', '/about'],
+];
+$authLinks = [
+    'login' => ['Login', '/auth.login'],
+    'register' => ['Register', '/auth.register'],
+    'logout' => ['Logout', '/auth.logout'],
+];
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 

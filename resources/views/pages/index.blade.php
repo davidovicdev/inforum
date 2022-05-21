@@ -1,7 +1,6 @@
 @extends('layout')
 @section('title')
-    Inforum - Home
+    Home
 @endsection
 @section('content')
-    <h1></h1>
 @endsection
