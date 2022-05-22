@@ -14,6 +14,6 @@
     </td>
     <td>{{ $user->email }}</td>
     <td>{{ $user->is_admin == 1 ? 'Admin' : 'User' }}</td>
-    <td>{{ date('d.m.Y.', strtotime($user->created_at)) }}</td>
-    <td>{{ $user->posts_count == 0 ? 'No posts' : $user->posts_count }}</td>
+    <td>{{ date('Y.m.d', strtotime($user->created_at)) }}</td>
+    <td>{{ $user->posts_count }}</td>
 </tr>
