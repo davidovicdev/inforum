@@ -14,8 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->data["users"] = User::select(["id", "is_active", "avatar", "is_admin", "username", "email", "created_at"])->withCount("posts")->paginate(20);
-        return view("pages.users.index", $this->data);
+        $users = User::select(["id", "is_active", "avatar", "is_admin", "username", "email", "created_at"])->withCount("posts");
+        $users = $users->paginate(20);
+        return view("pages.users.index", compact("users"));
     }
 
     /**
