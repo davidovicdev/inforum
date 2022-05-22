@@ -21,7 +21,7 @@ $authLinks = [
 
 <body>
     @include('inc.nav')
-    <div class="container pt-5 pb-5" id="content">
+    <div class="container pt-3 pb-3 min-vh-100" id="content">
         @yield('content')
     </div>
     @include('inc.footer')
