@@ -18,12 +18,17 @@ class AuthController extends Controller
     {
         try {
             DB::beginTransaction();
-            $user = User::select(["id", "username", "email", "is_admin"])->where("email", $request->email)->where("password", md5($request->password))->first();
+            $user = User::select(["id", "username", "email", "is_admin"])->where("email", $request->email)->first();
             if ($user) {
-                session()->put("user", $user);
-                return redirect()->route("index");
+                $user = User::select(["id", "username", "email", "is_admin"])->where("email", $request->email)->where("password", md5($request->password))->first();
+                if ($user) {
+                    session()->put("user", $user);
+                    return redirect()->route("index");
+                } else {
+                    return redirect()->back()->withInput()->with("message", "Wrong password");
+                }
             } else {
-                return redirect()->back()->with("message", "Wrong email or password");
+                return redirect()->back()->withInput()->with("message", "Account with that email does not exist");
             }
             DB::commit();
         } catch (\Throwable $th) {

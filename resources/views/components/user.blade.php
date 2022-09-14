@@ -1,9 +1,9 @@
 <tr>
     <td>
         @if ($user->is_active == 1)
-            <i class="fas fa-thumbs-up text-success" title="Active" style="font-size: 2em"></i>
+            <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 2em "></i>
         @else
-            <i class="fas fa-thumbs-down text-danger" title="Inactive" style="font-size: 2em"></i>
+            <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 2em"></i>
         @endif
     </td>
     <td class="d-flex align-items-center justify-content-left">

@@ -47,7 +47,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "userComments", "friends"])->findOrFail($id);
+        return view("pages.users.show", ["user" => $user]);
     }
 
     /**
@@ -82,10 +83,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function myProfile()
-    {
-        $user = User::findOrFail(session("user")->id);
-        dd($user);
     }
 }

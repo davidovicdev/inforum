@@ -6,11 +6,11 @@
     <form method="POST" action="{{ route('auth.doLogin') }}">
         @csrf
         <div class="form-outline mb-4">
-            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" />
+            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required />
             <label class="form-label" for="email">Email address</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="password" id="password" name="password" class="form-control" />
+            <input type="password" id="password" name="password" class="form-control" required />
             <label class="form-label" for="password">Password</label>
         </div>
         <button type="submit" class="btn btn-primary btn-block mb-4">Log In</button>
