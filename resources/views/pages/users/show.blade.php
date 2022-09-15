@@ -45,7 +45,7 @@
             <p><strong>City</strong> : {{ $user->city->name ?? '/' }}</p>
             <p><strong>Date of birth</strong> : {{ $user->date_of_birth ?? '/' }}</p>
             <p><strong>Phone</strong> : {{ $user->phone ?? '/' }}</p>
-            <p><strong>Date of registration</strong> : {{ $user->created_at ?? '/' }}</p>
+            <p><strong>Date of registration</strong> : {{ explode(' ', $user->created_at)[0] }}</p>
             <p><strong>Total posts</strong> : {{ $user->posts_count ?? '0' }}</p>
         </div>
         <div class="col-md-4 col-lg-4">
@@ -87,10 +87,19 @@
             </p>
         </div>
         <div class="col-md-4 col-lg-4">
-            <h2>Friends</h2>
-            @foreach ($user->friends as $friend)
-                @dd($friend->friend_id)
-            @endforeach
+            <h2>Friends ({{ count($friends) }})</h2>
+            @forelse ($friends as $friend)
+                <p>
+                    @if ($friend->is_active == 1)
+                        <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 1em "></i>
+                    @else
+                        <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 1em"></i>
+                    @endif
+                    <a href="{{ route('users.show', $friend->id) }}">{{ $friend->username }}</a>
+                </p>
+            @empty
+                <p>No friends</p>
+            @endforelse
 
         </div>
     </div>

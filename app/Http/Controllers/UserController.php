@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,15 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "userComments", "friends"])->withCount('posts')->findOrFail($id);
-        return view("pages.users.show", ["user" => $user]);
+        $friendsId = [];
+        foreach ($user->friends as $friend) {
+            if ($friend->accepted) {
+
+                $friendsId[] = $friend->friend_id;
+            }
+        }
+        $friends = User::whereIn("id", $friendsId)->orderBy('username', "ASC")->get(["id", "username", "is_active"]);
+        return view("pages.users.show", ["user" => $user, "friends" => $friends]);
     }
 
     /**
