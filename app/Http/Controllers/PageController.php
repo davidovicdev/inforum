@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
 
 class PageController extends Controller
 {
     public function index()
     {
-        return view("pages.index");
+        $forums = Forum::withCount(["topics", "posts"])->get();
+        return view("pages.index", ["forums" => $forums]);
     }
     public function contact()
     {

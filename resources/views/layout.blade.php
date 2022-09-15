@@ -1,4 +1,4 @@
-@php
+w@php
 $links = [
     'home' => ['Home', 'index'],
     'users' => ['Users', 'users.index'],

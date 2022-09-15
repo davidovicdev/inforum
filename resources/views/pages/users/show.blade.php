@@ -17,8 +17,11 @@
 @section('content')
     @if (session('user'))
         @if (session('user')->id == $user->id)
-            <h1>
-                My Profile</h1>
+            <div style="display: flex; justify-content: space-around; align-items:center">
+                <span class="h1">
+                    My Profile</span>
+                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Update</a>
+            </div>
         @else
             <span class="h1">{{ $user->username }} </span>
             @if ($user->is_active == 1)
