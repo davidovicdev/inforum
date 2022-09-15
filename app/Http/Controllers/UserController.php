@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "userComments", "friends"])->findOrFail($id);
+        $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "userComments", "friends"])->withCount('posts')->findOrFail($id);
         return view("pages.users.show", ["user" => $user]);
     }
 
