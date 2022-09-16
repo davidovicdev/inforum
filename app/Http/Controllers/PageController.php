@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\Topic;
+use App\Models\User;
 
 class PageController extends Controller
 {
     public function index()
     {
         $forums = Forum::withCount(["topics", "posts"])->get();
-        return view("pages.index", ["forums" => $forums]);
+        dd($forums);
+        $membersCount = User::count();
+        $lastMember = User::latest()->first();
+        $topicsCount = Topic::count();
+        return view("pages.index", ["forums" => $forums, "lastMember" => $lastMember, "membersCount" => $membersCount, "topicsCount" => $topicsCount]);
     }
     public function contact()
     {
