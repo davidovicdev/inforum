@@ -17,7 +17,8 @@ class PageController extends Controller
         $lastMember = User::latest()->first();
         $topicsCount = Topic::count();
         $activeUsers = User::where("is_active", 1)->get();
-        return view("pages.index", ["forums" => $forums, "lastMember" => $lastMember, "membersCount" => $membersCount, "topicsCount" => $topicsCount, "activeUsers" => $activeUsers]);
+        $activeUsersCount = User::where("is_active", 1)->count();
+        return view("pages.index", ["activeUsersCount" => $activeUsersCount, "forums" => $forums, "lastMember" => $lastMember, "membersCount" => $membersCount, "topicsCount" => $topicsCount, "activeUsers" => $activeUsers]);
     }
     public function contact()
     {

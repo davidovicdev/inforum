@@ -1,12 +1,12 @@
 @extends('layout')
 @section('title')
-    Home
+    {{ $topic->name }}
 @endsection
 @section('content')
-    <h1>HOMEPAGE</h1>
-    {{ session('user') }}
+    <h1> {{ $topic->name }}</h1>
+
     <div class="row">
-        <div class="col-lg-8">
+        {{-- <div class="col-lg-8">
             @foreach ($forums as $forum)
                 <fieldset class="border p-2">
                     <legend class="w-auto h4">{{ $forum->name }}</legend>
@@ -14,8 +14,7 @@
                     <div class="control-group">
                         @foreach ($forum->topics as $topic)
                             <div class="d-flex justify-content-between pr-2">
-                                <a href="{{ route('topic.show', $topic->id) }}"
-                                    class="link-primary h6 m-3">{{ $topic->name }}</a>
+                                <a href="{{route("")}}" class="link-primary h6 m-3">{{ $topic->name }}</a>
                                 <span>Posts: {{ $topic->posts->count() }}</span>
                             </div>
                         @endforeach
@@ -33,7 +32,7 @@
                         <li class="list-group-item"><strong>Last member: </strong><a
                                 href="{{ route('users.show', $lastMember->id) }}">{{ $lastMember->username }}</a></li>
                         <li class="list-group-item">
-                            <strong>Active members ({{ $activeUsersCount }})</strong>
+                            <strong>Active members</strong>
                             @foreach ($activeUsers as $activeUser)
                                 &nbsp;&nbsp;&nbsp;&nbsp;<a
                                     href="{{ route('users.show', $activeUser->id) }}">{{ $activeUser->username }}</a>
@@ -42,6 +41,6 @@
                     </ul>
                 </div>
             </fieldset>
-        </div>
+        </div> --}}
     </div>
 @endsection
