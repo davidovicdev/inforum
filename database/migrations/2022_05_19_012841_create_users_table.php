@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->integer('gender_id')->index('fk_users_gender1_idx');
+            $table->integer('gender_id')->nullable()->index('fk_users_gender1_idx');
             $table->integer('city_id')->nullable()->index('fk_users_cities1_idx');
             $table->integer('eye_color_id')->nullable()->index('fk_users_eye_color1_idx');
             $table->integer('interested_in_id')->nullable()->index('fk_users_interested_in1_idx');

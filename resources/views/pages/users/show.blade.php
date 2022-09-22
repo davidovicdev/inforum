@@ -59,6 +59,7 @@
             <p><strong>Hair color</strong> : {{ $user->hairColor->name ?? '/' }}</p>
             <p><strong>Profession</strong> : {{ $user->profession->name ?? '/' }}</p>
             <p><strong>Status of relationship</strong> : {{ $user->statusOfRelationship->name ?? '/' }}</p>
+            <p><strong>About me</strong> : {{ $user->about_me_description ?? '/' }}</p>
             <h3 class="h3">Social</h3>
             <p><strong>Facebook</strong> :
                 @if ($user->facebook)

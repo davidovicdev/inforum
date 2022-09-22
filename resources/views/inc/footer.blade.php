@@ -5,7 +5,7 @@
         <!-- Section: Links -->
         <section class="">
             <!--Grid row-->
-            <div class="row">
+            <div class="row d-flex justify-content-around">
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">FOOTER CONTENT</h5>
