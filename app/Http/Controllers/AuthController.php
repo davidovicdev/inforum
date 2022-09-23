@@ -82,12 +82,12 @@ class AuthController extends Controller
                         "is_active" => 1,
                         "created_at" => Carbon::now(),
                     ]);
-                    $user = User::find($userId);
+                    DB::commit();
                     $userForSession = new stdClass();
                     $userForSession->id = $userId;
-                    $userForSession->username = $user->username;
-                    $userForSession->email = $user->email;
-                    $userForSession->is_admin = $user->isM;
+                    $userForSession->username = $request->username;
+                    $userForSession->email = $request->email;
+                    $userForSession->is_admin = 0;
                     session()->put("user", $userForSession);
                     return redirect()->route("users.show", $userId);
                 }
