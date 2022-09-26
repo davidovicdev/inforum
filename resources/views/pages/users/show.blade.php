@@ -1,16 +1,12 @@
 @extends('layout')
 @section('title')
     @if (session('user'))
-        {{-- ULOGOVAN JE --}}
         @if (session('user')->id == $user->id)
-            {{-- NJEGOV NALOG --}}
             My Profile
         @else
-            {{-- TUDJI NALOG --}}
             {{ $user->username }}
         @endif
     @else
-        {{-- NIJE ULOGOVAN --}}
         {{ $user->username }}
     @endif
 @endsection
@@ -42,8 +38,12 @@
     <br><br>
     <div class="row">
         <div class="col-md-4 col-lg-4">
-            <img src="https://fakeimg.pl/300x200" alt="avatar"><br><br>
-            <p><strong>Username</strong> : {{ $user->username ?? '/' }}</p>
+            @if ($user->avatar)
+                <img src="{{ $user->avatar }}" alt="Image" class='img' alt="Avatar" height="200px">
+            @else
+                <img src="{{ asset('img/noavatar.png') }}" class='img' alt="Avatar" height="200px">
+            @endif
+            <p class="mt-4"><strong>Username</strong> : {{ $user->username ?? '/' }}</p>
             <p><strong>Email</strong> : {{ $user->email ?? '/' }}</p>
             <p><strong>City</strong> : {{ $user->city->name ?? '/' }}</p>
             <p><strong>Date of birth</strong> : {{ $user->date_of_birth ?? '/' }}</p>
@@ -60,39 +60,26 @@
             <p><strong>Profession</strong> : {{ $user->profession->name ?? '/' }}</p>
             <p><strong>Status of relationship</strong> : {{ $user->statusOfRelationship->name ?? '/' }}</p>
             <p><strong>About me</strong> : {{ $user->about_me_description ?? '/' }}</p>
-            <h3 class="h3">Social</h3>
-            <p><strong>Facebook</strong> :
-                @if ($user->facebook)
-                    <a href='{{ $user->facebook }}'>{{ $user->facebook }}</a>
-                @else
-                    /
-                @endif
-            </p>
-            <p><strong>Twitter</strong> :
-                @if ($user->twitter)
-                    <a href='{{ $user->twitter }}'>{{ $user->twitter }}</a>
-                @else
-                    /
-                @endif
-            </p>
-            <p><strong>LinkedIn</strong> :
-                @if ($user->linkedin)
-                    <a href='{{ $user->linkedin }}'>{{ $user->linkedin }}</a>
-                @else
-                    /
-                @endif
-            </p>
-            <p><strong>Instagram</strong> :
-                @if ($user->instagram)
-                    <a href='{{ $user->instagram }}'>{{ $user->instagram }}</a>
-                @else
-                    /
-                @endif
-            </p>
+            @if ($user->facebook)
+                <a class='m-2' style="color:  #3b5998; font-size: 1.6em" href='{{ $user->facebook }}'><i
+                        class="fa fa-facebook" aria-hidden="true"></i></a>
+            @endif
+            @if ($user->twitter)
+                <a class='m-2' style="color: #00acee;font-size: 1.6em" href='{{ $user->twitter }}'><i
+                        class="fa fa-twitter" aria-hidden="true"></i></a>
+            @endif
+            @if ($user->linkedin)
+                <a class='m-2' style="color: #0072b1;font-size: 1.6em" href='{{ $user->linkedin }}'><i
+                        class="fa fa-linkedin" aria-hidden="true"></i></a>
+            @endif
+            @if ($user->instagram)
+                <a class='m-2' style="color: #8a3ab9;font-size: 1.6em" href='{{ $user->instagram }}'><i
+                        class="fa fa-instagram" aria-hidden="true"></i></a>
+            @endif
         </div>
         <div class="col-md-4 col-lg-4">
             <h2>Friends ({{ count($friends) }})</h2>
-            @forelse ($friends as $friend)
+            @foreach ($friends as $friend)
                 <p>
                     @if ($friend->is_active == 1)
                         <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 1em "></i>
@@ -101,9 +88,7 @@
                     @endif
                     <a href="{{ route('users.show', $friend->id) }}">{{ $friend->username }}</a>
                 </p>
-            @empty
-                <p>No friends</p>
-            @endforelse
+            @endforeach
 
         </div>
     </div>

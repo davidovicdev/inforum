@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EyeColor;
 use App\Models\Friend;
+use App\Models\Gender;
+use App\Models\HairColor;
+use App\Models\InterestedIn;
+use App\Models\Profession;
+use App\Models\StatusOfRelationship;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -68,7 +74,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view("pages.users.edit", ["id" => $id]);
+        if (session("user")->id == $id) {
+
+            $user = User::find($id);
+            $gender = Gender::all();
+            $interestedIn = InterestedIn::all();
+            $eyeColors = EyeColor::all();
+            $hairColors = HairColor::all();
+            $professions = Profession::all();
+            $statusOfRelationships = StatusOfRelationship::all();
+
+            return view("pages.users.edit", ["user" => $user, "gender" => $gender, "interestedIn" => $interestedIn, "eyeColors" => $eyeColors, "hairColors" => $hairColors, "professions" => $professions, "statusOfRelationships" => $statusOfRelationships]);
+        } else {
+            http_response_code(404);
+        }
     }
 
     /**

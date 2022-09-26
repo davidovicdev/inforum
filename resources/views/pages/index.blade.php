@@ -4,7 +4,6 @@
 @endsection
 @section('content')
     <h1>HOMEPAGE</h1>
-    {{ session('user') }}
     <div class="row">
         <div class="col-lg-8">
             @foreach ($forums as $forum)
@@ -24,7 +23,7 @@
             @endforeach
         </div>
         <div class="col-lg-4">
-            <fieldset class="border p-2 m-2">
+            <fieldset class="border rounded p-3 m-2">
                 <legend class="w-auto h4"> STATISTICS </legend>
                 <div class="control-group">
                     <ul class="list-group">

@@ -11,8 +11,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $forums = Forum::withCount(["topics", "posts"])->get();
-
+        $forums = Forum::with(["topics.posts"])->withCount(["topics", "posts"])->get();
         $membersCount = User::count();
         $lastMember = User::latest()->first();
         $topicsCount = Topic::count();
