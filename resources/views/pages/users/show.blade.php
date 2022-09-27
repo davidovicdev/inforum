@@ -82,9 +82,9 @@
             @foreach ($friends as $friend)
                 <p>
                     @if ($friend->is_active == 1)
-                        <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 1em "></i>
+                        <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 0.8em"></i>
                     @else
-                        <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 1em"></i>
+                        <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 0.8em"></i>
                     @endif
                     <a href="{{ route('users.show', $friend->id) }}">{{ $friend->username }}</a>
                 </p>

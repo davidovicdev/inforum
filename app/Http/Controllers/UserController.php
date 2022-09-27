@@ -58,10 +58,11 @@ class UserController extends Controller
         $friendsId = [];
         foreach ($user->friends as $friend) {
             if ($friend->accepted) {
-
                 $friendsId[] = $friend->friend_id;
+                $friendsId[] = $friend->user_id;
             }
         }
+        $friendsId = array_unique($friendsId);
         $friends = User::whereIn("id", $friendsId)->orderBy('username', "ASC")->get(["id", "username", "is_active"]);
         return view("pages.users.show", ["user" => $user, "friends" => $friends]);
     }
@@ -111,5 +112,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function friendRequests($userId)
+    {
+        $friendIds = [];
+        $user = User::find($userId);
+        foreach ($user->friends as $friend) {
+            if (!$friend->accepted) {
+                $friendIds[] = $friend->id;
+            }
+        }
+        $friends = [];
+        foreach ($friendIds as $friendId) {
+            $friends[] = User::find($friendId);
+        }
+        dd($friends);
     }
 }

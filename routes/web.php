@@ -17,5 +17,6 @@ Route::get("/register", [AuthController::class, "register"])->name("auth.registe
 Route::post("/register", [AuthController::class, "doRegister"])->name("auth.doRegister");
 Route::get("/topics/{id}", [TopicController::class, "show"])->name("topic.show");
 Route::middleware("isLogged")->group(function () {
+    Route::get("/users/{id}/requests", [UserController::class, "friendRequests"])->name("users.friendRequests");
     Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
 });

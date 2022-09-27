@@ -23,6 +23,11 @@
                     @endforeach
                 @else
                     <li class="nav-item">
+                        <a class="nav-link text-light"
+                            href="{{ route('users.friendRequests', session('user')->id) }}">Friend
+                            requests</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-light" href="{{ route('users.show', session('user')->id) }}">My
                             profile</a>
                     </li>

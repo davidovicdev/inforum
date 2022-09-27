@@ -27,7 +27,7 @@ class FriendsSeeder extends Seeder
             DB::table("friends")->insert([
                 "user_id" => $userId,
                 "friend_id" => $frindId,
-                "accepted" => 1,
+                "accepted" => rand(0, 1),
                 "created_at" => $faker->dateTimeThisDecade()
             ]);
             array_push($friendsArray, [$userId, $frindId]);
