@@ -8,7 +8,7 @@
     </td>
     <td class="d-flex align-items-center justify-content-left">
         @if ($user->avatar)
-            <img src="{{ $user->avatar }}" alt="Image" class='img' height="40px">
+            <img src="{{ asset("uploads/$user->avatar") }}" alt="Image" class='img' height="40px">
         @else
             <img src="{{ asset('img/noavatar.png') }}" class='img' alt="Image" height="40px">
         @endif

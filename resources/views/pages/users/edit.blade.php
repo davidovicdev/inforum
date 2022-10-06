@@ -5,7 +5,7 @@
 @section('content')
     <h1>Update profile</h1>
     <h2>User id : {{ $user->id }}</h2>
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('users.update', session('user')->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         <div class="row">
             <div class="col-lg-6 col-md-5">
@@ -40,7 +40,10 @@
                     <input type="text" name="instagram" id="instagram" class="form-control"
                         value="{{ $user->instagram }}">
                 </div>
-
+                <div class="form-group mt-3">
+                    <label for="avatar">Avatar</label>
+                    <input type="file" name="avatar" id="avatar" class="form-control">
+                </div>
 
 
             </div>
@@ -97,12 +100,9 @@
                     <label for="about_me_description">About me</label>
                     <textarea name="about_me_description" id="about_me_description" class="form-control">{{ $user->about_me_description }}</textarea>
                 </div>
-                <div class="form-group mt-3">
-                    <label for="avatar">Avatar</label>
-                    <input type="file" name="avatar" id="avatar" class="form-control">
-                </div>
             </div>
         </div>
         @csrf
+        <input type="submit" value="Update" class="btn btn-primary mt-3">
     </form>
 @endsection

@@ -22,7 +22,6 @@
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
-
 .footer-bs .footer-nav ul.pages {
     list-style: none;
     padding: 0px;
@@ -45,7 +44,6 @@
     letter-spacing: 3px;
     margin-bottom: 10px;
 }
-
 .footer-bs .footer-nav ul.list {
     list-style: none;
     padding: 0px;
@@ -60,7 +58,6 @@
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
 }
-
 .footer-bs .footer-social ul {
     list-style: none;
     padding: 0px;
@@ -80,7 +77,6 @@
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
 }
-
 .footer-bs .footer-ns h4 {
     font-size: 11px;
     text-transform: uppercase;

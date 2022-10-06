@@ -11,6 +11,7 @@ use App\Models\Profession;
 use App\Models\StatusOfRelationship;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -43,7 +44,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -100,7 +100,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $fileName = time() . '_' . $request->file("avatar")->getClientOriginalName();
+            $request->file("avatar")->move(public_path('uploads'), $fileName);
+            $user = User::find(session("user")->id);
+            $user->avatar = $fileName;
+            $user->save();
+
+            // $request->file("avatar")->store(public_path());
+            // Storage::putFile(public_path("avatars"), $request->file("avatar"));
+            return redirect()->route("users.show", session("user")->id);
+            //code...
+        } catch (\Throwable $th) {
+            echo $th->getMessage();
+        }
     }
 
     /**
@@ -126,6 +139,5 @@ class UserController extends Controller
         foreach ($friendIds as $friendId) {
             $friends[] = User::find($friendId);
         }
-        dd($friends);
     }
 }

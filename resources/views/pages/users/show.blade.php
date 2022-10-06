@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-4 col-lg-4">
             @if ($user->avatar)
-                <img src="{{ $user->avatar }}" alt="Image" class='img' alt="Avatar" height="200px">
+                <img src="{{ asset("uploads/$user->avatar") }}" alt="Image" class='img' alt="Avatar" height="200px">
             @else
                 <img src="{{ asset('img/noavatar.png') }}" class='img' alt="Avatar" height="200px">
             @endif
