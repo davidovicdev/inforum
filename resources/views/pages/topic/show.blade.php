@@ -96,7 +96,7 @@
             <div class="col-md-9 col-lg-9 border p-3" style="min-height: 30vh">
                 <div style="text-align:right">
                     @if (session('user'))
-                        @if (session('user')->is_admin)
+                        @if (session('user')->is_admin || session('user')->id == $user->id)
                             <form action="{{ route('topics.destroyPost', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -104,7 +104,6 @@
                             </form>
                         @endif
                     @endif
-
                     {{ date('d.m.Y H:i', strtotime($post->created_at)) }}
                 </div>
                 <br>

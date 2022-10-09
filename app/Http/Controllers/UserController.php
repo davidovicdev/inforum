@@ -34,7 +34,7 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "userComments", "friends"])->withCount('posts')->findOrFail($id);
+        $user = User::with(["city", "profession", "interestedIn", "statusOfRelationship", "gender", "eyeColor", "hairColor", "posts", "friends"])->withCount('posts')->findOrFail($id);
         $friendIds = [];
         $friendships1 = Friend::where("user_id", $id)->where("accepted", 1)->get();
         $friendships2 = Friend::where("friend_id", $id)->where("accepted", 1)->get();
@@ -138,8 +138,6 @@ class UserController extends Controller
             Friend::where("user_id", $id)->delete();
             Friend::where("friend_id", $id)->delete();
             Post::where("user_id", $id)->delete();
-            Comment::where("user_id", $id)->delete();
-            UserComment::where("user_id", $id)->delete();
             $username = User::find($id)->username;
             User::destroy($id);
             if ($username == session("user")->username) {

@@ -41,10 +41,6 @@ class User extends Model
     {
         return $this->hasMany(Post::class);
     }
-    public function userComments()
-    {
-        return $this->hasMany(UserComment::class);
-    }
     public function friends()
     {
         return $this->hasMany(Friend::class);
