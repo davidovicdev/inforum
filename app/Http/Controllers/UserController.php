@@ -49,24 +49,20 @@ class UserController extends Controller
         }
         $friends = User::whereIn("id", $friendIds)->orderBy('username', "ASC")->get(["id", "username", "is_active"]);
         $isFriend = false;
-        $isAccepted = false;
+        $friendship = null;
         if (session("user")) {
-
             if (session("user")->id != $id) {
-                $myUsername = User::findOrFail(session("user")->id)->username;
+                $myUsername = session("user")->username;
                 foreach ($friends as $friend) {
                     if ($friend->username == $myUsername) {
                         $isFriend = true;
-                        /* IS ACCEPTED */
-                        if (Friend::where("user_id", $myUsername)->where("friend_id", $friend->username)->where("accepted", 1)->first() || Friend::where("user_id", $friend->username)->where("friend_id", $myUsername)->where("accepted", 1)->first()) {
-                            $isAccepted = true;
-                        }
-                        break;
                     }
                 }
+
+                $friendship = Friend::where("user_id", $id)->where("friend_id", session("user")->id)->first() ?? Friend::where("user_id",  session("user")->id)->where("friend_id", $id)->first();
             }
         }
-        return view("pages.users.show", ["user" => $user, "friends" => $friends, "isFriend" => $isFriend, "isAccepted" => $isAccepted]);
+        return view("pages.users.show", ["user" => $user, "friends" => $friends, "isFriend" => $isFriend, "friendship" => $friendship]);
     }
     public function edit($id)
     {
@@ -89,9 +85,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            if (User::where("email", $request->email)->first()) {
+            $existingEmail = User::where("email", $request->email)->first();
+            $existingUsername = User::where("username", $request->username)->first();
+            if ($existingEmail && $existingEmail->email != session("user")->email) {
                 return redirect()->back()->with(["error" => "User with that email already exists"]);
-            } elseif (User::where("username", $request->username)->first()) {
+            } elseif ($existingUsername && $existingUsername->username != session("user")->username) {
                 return redirect()->back()->with(["error" => "User with that username already exists"]);
             } else {
                 $user = User::find(session("user")->id);
@@ -118,6 +116,8 @@ class UserController extends Controller
                 $user->phone = $request->phone;
                 $user->avatar = $fileName;
                 $user->save();
+                session("user")->email = $request->email;
+                session("user")->username = $request->username;
                 return redirect()->route("users.show", session("user")->id)->with(["success" => "Successfully updated profile"]);
             }
         } catch (\Throwable $th) {

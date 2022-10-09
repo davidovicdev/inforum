@@ -27,16 +27,25 @@ class ForumsSeeder extends Seeder
                 "Music",
                 "Funny images"
             ],
-            "General topics" => ["Sex 18+", "Womens secret", "World nature", "Pets", "Tourism"],
-            "Techinal part" => ["Mobile servicing", "Web development", "Digital art", "Gaming", "PC repair"],
+            "General topics" => ["Sex", "Womens secret", "World nature", "Pets", "Tourism"],
+            "Technical part" => ["Mobile servicing", "Web development", "Digital art", "Gaming", "PC repair"],
             "Social topics" => ["Religion", "Politics", "Psychology", "Literature"],
             "Sport" => ["Football", "Basketball", "Waterpolo", "Tennis", "F1", "Grand Prix"]
         ];
+        $descriptions = [
+            "Place where you can lay back and chill and discuss about various relaxing topics",
+            "Your day to day life",
+            "Having problems with techologies? You are in the right place",
+            "Everyday topics can be found right here",
+            "Are you a sport fan? Choose any topic with your favorite sport"
+        ];
+        $counter = 0;
         foreach ($forums as $forumName => $topics) {
             $forumId = DB::table("forums")->insertGetId([
                 "name" => $forumName,
-                "description" => $faker->text(50),
+                "description" => $descriptions[$counter],
             ]);
+            $counter++;
             foreach ($topics as $topic) {
                 $topicId = DB::table("topics")->insertGetId([
                     "forum_id" => $forumId,

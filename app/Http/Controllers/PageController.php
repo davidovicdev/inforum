@@ -19,10 +19,6 @@ class PageController extends Controller
         $activeUsersCount = User::where("is_active", 1)->count();
         return view("pages.index", ["activeUsersCount" => $activeUsersCount, "forums" => $forums, "lastMember" => $lastMember, "membersCount" => $membersCount, "topicsCount" => $topicsCount, "activeUsers" => $activeUsers]);
     }
-    public function contact()
-    {
-        return view("pages.contact");
-    }
 
     public function aboutAuthor()
     {

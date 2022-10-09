@@ -48,8 +48,10 @@
                     @if (session('success'))
                         <h4 class="text-success">{{ session('success') }}</h4>
                     @endif
-                    @if (!$isAccepted)
-                        <p class="btn btn-secondary">Pending</p>
+                    @if ($friendship)
+                        @if ($friendship->accepted == 0)
+                            <p class="btn btn-secondary">Pending</p>
+                        @endif
                     @else
                         <form action="{{ route('users.sendFriendRequest', $friendId) }}" method="POST">
                             @csrf
@@ -85,7 +87,7 @@
             <p class="mt-4"><strong>Username</strong> : {{ $user->username ?? '/' }}</p>
             <p><strong>Email</strong> : {{ $user->email ?? '/' }}</p>
             <p><strong>City</strong> : {{ $user->city->name ?? '/' }}</p>
-            <p><strong>Date of birth</strong> : {{ $user->date_of_birth ?? '/' }}</p>
+            <p><strong>Date of birth</strong> : {{ date('d.m.Y', strtotime($user->date_of_birth)) ?? '/' }}</p>
             <p><strong>Phone</strong> : {{ $user->phone ?? '/' }}</p>
             <p><strong>Date of registration</strong> : {{ date('d.m.Y H:i', strtotime($user->created_at)) }}</p>
             <p><strong>Total posts</strong> : {{ $user->posts_count ?? '0' }}</p>

@@ -2,7 +2,6 @@
 $links = [
     'home' => ['Home', 'index'],
     'users' => ['Users', 'users.index'],
-    'contact' => ['Contact', 'contact'],
     'aboutAuthor' => ['About author', 'aboutAuthor'],
 ];
 $authLinks = [
