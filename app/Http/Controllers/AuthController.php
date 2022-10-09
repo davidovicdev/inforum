@@ -57,7 +57,6 @@ class AuthController extends Controller
                 if ($user) {
                     return redirect()->back()->withInput()->with("message", "Account with that username already exists");
                 } else {
-                    // REGISTER
                     $userId =  User::insertGetId([
                         "gender_id" => null,
                         "city_id" => null,

@@ -4,11 +4,13 @@
 @endsection
 @section('content')
     <h1>Update profile</h1>
-    <h2>User id : {{ $user->id }}</h2>
     <form action="{{ route('users.update', session('user')->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         <div class="row">
             <div class="col-lg-6 col-md-5">
+                @if (session('error'))
+                    <p class="h3 text-danger">{{ session('error') }}</p>
+                @endif
                 <div class="form-group mt-3">
                     <label for="username">Username <span class="text-danger">*</span></label>
                     <input type="username" name="username" id="username" class="form-control" value="{{ $user->username }}"
@@ -48,6 +50,14 @@
 
             </div>
             <div class="col-lg-6 col-md-6">
+                <div class="form-group mt-3">
+                    <label for="city">City</label>
+                    <select name="city" id="city" class="form-select">
+                        @foreach ($city as $c)
+                            <option value="{{ $c->id }}">{{ $c->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group mt-3">
                     <label for="gender">Gender</label>
                     <select name="gender" id="gender" class="form-select">

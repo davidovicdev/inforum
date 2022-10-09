@@ -3,7 +3,8 @@
     Register
 @endsection
 @section('content')
-    <form method="POST" action="{{ route('auth.doRegister') }}">
+    <h1>Register</h1>
+    <form method="POST" action="{{ route('auth.doRegister') }}" class="mt-5">
         @csrf
         <div class="form-outline mb-4">
             <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control" required />
@@ -14,8 +15,8 @@
             <label class="form-label" for="email">Email address</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="date" id="birthDate" name="birthDate" value="{{ old('birthDate') }}" class="form-control"
-                required />
+            <input type="date" id="birthDate" name="birthDate" max="2000-01-01" min="1950-01-01"
+                value="{{ old('birthDate') }}" class="form-control" required />
             <label class="form-label" for="birthDate">Birth date</label>
         </div>
         <div class="form-outline mb-4">

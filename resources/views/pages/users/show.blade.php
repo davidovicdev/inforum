@@ -12,19 +12,54 @@
 @endsection
 @section('content')
     @if (session('user'))
+
         @if (session('user')->id == $user->id)
             <div style="display: flex; justify-content: space-around; align-items:center">
                 <span class="h1">
                     My Profile</span>
-                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Update</a>
+                <div class="d-flex">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Update account</a>
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete account</button>
+                    </form>
+                </div>
             </div>
-        @else
-            <span class="h1">{{ $user->username }} </span>
-            @if ($user->is_active == 1)
-                <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 2em "></i>
-            @else
-                <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 2em"></i>
+            @if (session('success'))
+                <p class="m-2 text-success h3">{{ session('success') }}</p>
             @endif
+        @else
+            <div style="display: flex; justify-content: space-around; align-items:center">
+                <div>
+                    <span class="h1">{{ $user->username }} </span>
+                    @if ($user->is_active == 1)
+                        <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 2em "></i>
+                    @else
+                        <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 2em"></i>
+                    @endif
+                </div>
+                @php
+                    $friendId = explode('/', $_SERVER['REQUEST_URI'])[2];
+                    
+                @endphp
+
+                @if (!$isFriend)
+                    @if (session('success'))
+                        <h4 class="text-success">{{ session('success') }}</h4>
+                    @endif
+                    @if (!$isAccepted)
+                        <p class="btn btn-secondary">Pending</p>
+                    @else
+                        <form action="{{ route('users.sendFriendRequest', $friendId) }}" method="POST">
+                            @csrf
+                            <input type="submit" value="Send friend request" class="btn btn-success">
+                        </form>
+                    @endif
+                @else
+                    <h4 class="text-success">You are friends</h4>
+                @endif
+            </div>
         @endif
     @else
         <span class="h1">{{ $user->username }} </span>
@@ -39,9 +74,13 @@
     <div class="row">
         <div class="col-md-4 col-lg-4">
             @if ($user->avatar)
-                <img src="{{ asset("uploads/$user->avatar") }}" alt="Image" class='img' alt="Avatar" height="200px">
+                @if (str_contains($user->avatar, 'https://'))
+                    <img src="{{ asset("$user->avatar") }}" alt="Image" class='img' height="200px">
+                @else
+                    <img src="{{ asset("uploads/$user->avatar") }}" alt="Image" class='img' height="200px">
+                @endif
             @else
-                <img src="{{ asset('img/noavatar.png') }}" class='img' alt="Avatar" height="200px">
+                <img src="{{ asset('img/noavatar.png') }}" class='img' alt="Image" height="200px">
             @endif
             <p class="mt-4"><strong>Username</strong> : {{ $user->username ?? '/' }}</p>
             <p><strong>Email</strong> : {{ $user->email ?? '/' }}</p>

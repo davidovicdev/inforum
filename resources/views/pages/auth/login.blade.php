@@ -3,7 +3,8 @@
     Login
 @endsection
 @section('content')
-    <form method="POST" action="{{ route('auth.doLogin') }}">
+    <h1>Log in</h1>
+    <form method="POST" action="{{ route('auth.doLogin') }}" class="mt-5">
         @csrf
         <div class="form-outline mb-4">
             <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required />
