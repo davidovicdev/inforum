@@ -47,7 +47,7 @@ class UsersSeeder extends Seeder
             "twitter" => null,
             "linkedin" => "https://www.linkedin.com/in/matija-davidovic-6994a2236/",
             "instagram" => null,
-            "created_at" => Carbon::now(),
+            "created_at" => Carbon::now("Europe/Belgrade"),
         ]);
         DB::table("users")->insert([
             "gender_id" => 1,
@@ -70,7 +70,7 @@ class UsersSeeder extends Seeder
             "twitter" => null,
             "linkedin" => "https://www.linkedin.com/in/matija-davidovic-6994a2236/",
             "instagram" => null,
-            "created_at" => Carbon::now(),
+            "created_at" => Carbon::now("Europe/Belgrade"),
         ]);
         DB::table("users")->insert([
             "gender_id" => 1,
@@ -93,7 +93,7 @@ class UsersSeeder extends Seeder
             "twitter" => null,
             "linkedin" => "https://www.linkedin.com/in/matija-davidovic-6994a2236/",
             "instagram" => null,
-            "created_at" => Carbon::now(),
+            "created_at" => Carbon::now("Europe/Belgrade"),
         ]);
         DB::table("users")->insert([
             "gender_id" => 1,
@@ -116,7 +116,7 @@ class UsersSeeder extends Seeder
             "twitter" => null,
             "linkedin" => "https://www.linkedin.com/in/matija-davidovic-6994a2236/",
             "instagram" => null,
-            "created_at" => Carbon::now(),
+            "created_at" => Carbon::now("Europe/Belgrade"),
         ]);
         DB::table("users")->insert([
             "gender_id" => 1,
@@ -139,7 +139,7 @@ class UsersSeeder extends Seeder
             "twitter" => null,
             "linkedin" => "https://www.linkedin.com/in/matija-davidovic-6994a2236/",
             "instagram" => null,
-            "created_at" => Carbon::now(),
+            "created_at" => Carbon::now("Europe/Belgrade"),
         ]);
 
         $faker = Factory::create();

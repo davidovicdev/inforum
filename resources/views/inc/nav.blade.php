@@ -13,6 +13,9 @@
                     </li>
                 @endforeach
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">Current datetime : @php echo date('H:i d.m.Y') @endphp</li>
+            </ul>
             <ul class="navbar-nav mr-auto">
                 @if (!session()->has('user'))
 
@@ -25,11 +28,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-light"
                             href="{{ route('users.friendRequests', session('user')->id) }}">Friend
-                            requests</a>
+                            requests
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="{{ route('users.show', session('user')->id) }}">My
-                            profile</a>
+                        @php
+                            $admin = false;
+                            if (session('user')) {
+                                $admin = session('user')->is_admin ? true : false;
+                            }
+                        @endphp
+                        <a class="nav-link  @php if(!$admin){echo "text-light";}else{echo "text-danger";} @endphp"
+                            href="{{ route('users.show', session('user')->id) }}">My
+                            profile ({{ session('user')->is_admin ? 'Admin' : 'User' }})</a>
+
                     </li>
                     <li class="nav-item">
                         <form action="{{ route('auth.logout') }}" method="POST"> @csrf <button

@@ -14,7 +14,7 @@ class AddForeignKeysToUserCommentsTable extends Migration
     public function up()
     {
         Schema::table('user_comments', function (Blueprint $table) {
-            $table->foreign(['comment_id'], 'fk_user_comments_comments1')->references(['id'])->on('comments')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['comment_id'], 'fk_user_comments_comments1')->references(['id'])->on('comments')->onUpdate('NO ACTION')->onDelete('CASCADE');
             $table->foreign(['user_id'], 'fk_user_comments_users1')->references(['id'])->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }

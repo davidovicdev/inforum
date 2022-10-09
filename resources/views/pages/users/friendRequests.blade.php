@@ -28,8 +28,12 @@
                 @endif
                 <a href="{{ route('users.show', $friend->id) }}" class='nav nav-link'>{{ $friend->username }}</a>
             </div>
+            <span>
+                {{ date('H:i d.m.Y', strtotime($friend->created_at)) }}
+            </span>
             <div class="d-flex">
-                <form action="{{ route('users.acceptFriendRequest', $friend->id) }}" method="POST">
+                <form action="{{ route('users.acceptFriendRequest', $friend->id) }}" method="POST"
+                    style="margin-right: 5px">
                     @csrf
                     @method('PUT')
                     <input type="submit" class="btn btn-success" value="Accept">

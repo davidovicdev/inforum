@@ -10,16 +10,18 @@
         {{ $user->username }}
     @endif
 @endsection
-@section('content')
-    @if (session('user'))
 
+@section('content')
+
+    @if (session('user'))
         @if (session('user')->id == $user->id)
             <div style="display: flex; justify-content: space-around; align-items:center">
                 <span class="h1">
                     My Profile</span>
                 <div class="d-flex">
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Update account</a>
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="">
+                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary" style="margin-right: 10px">Update
+                        account</a>
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">Delete account</button>
@@ -43,7 +45,13 @@
                     $friendId = explode('/', $_SERVER['REQUEST_URI'])[2];
                     
                 @endphp
-
+                @if (session('user')->is_admin)
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete account</button>
+                    </form>
+                @endif
                 @if (!$isFriend)
                     @if (session('success'))
                         <h4 class="text-success">{{ session('success') }}</h4>

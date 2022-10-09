@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Comment;
 use App\Models\EyeColor;
 use App\Models\Friend;
 use App\Models\Gender;
 use App\Models\HairColor;
 use App\Models\InterestedIn;
+use App\Models\Post;
 use App\Models\Profession;
 use App\Models\StatusOfRelationship;
 use App\Models\User;
+use App\Models\UserComment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -66,19 +69,23 @@ class UserController extends Controller
     }
     public function edit($id)
     {
-        if (session("user")->id == $id) {
+        if (session("user")) {
 
-            $user = User::find($id);
-            $gender = Gender::all();
-            $interestedIn = InterestedIn::all();
-            $city = City::all();
-            $eyeColors = EyeColor::all();
-            $hairColors = HairColor::all();
-            $professions = Profession::all();
-            $statusOfRelationships = StatusOfRelationship::all();
+            if (session("user")->id == $id) {
 
-            return view("pages.users.edit", ["city" => $city, "user" => $user, "gender" => $gender, "interestedIn" => $interestedIn, "eyeColors" => $eyeColors, "hairColors" => $hairColors, "professions" => $professions, "statusOfRelationships" => $statusOfRelationships]);
-        } else {
+                $user = User::find($id);
+                $gender = Gender::all();
+                $interestedIn = InterestedIn::all();
+                $city = City::all();
+                $eyeColors = EyeColor::all();
+                $hairColors = HairColor::all();
+                $professions = Profession::all();
+                $statusOfRelationships = StatusOfRelationship::all();
+
+                return view("pages.users.edit", ["city" => $city, "user" => $user, "gender" => $gender, "interestedIn" => $interestedIn, "eyeColors" => $eyeColors, "hairColors" => $hairColors, "professions" => $professions, "statusOfRelationships" => $statusOfRelationships]);
+            } else {
+                http_response_code(404);
+            }
             http_response_code(404);
         }
     }
@@ -128,9 +135,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
+            Friend::where("user_id", $id)->delete();
+            Friend::where("friend_id", $id)->delete();
+            Post::where("user_id", $id)->delete();
+            Comment::where("user_id", $id)->delete();
+            UserComment::where("user_id", $id)->delete();
+            $username = User::find($id)->username;
             User::destroy($id);
-            session()->forget("user");
-            return redirect()->route("index");
+            if ($username == session("user")->username) {
+                session()->forget("user");
+            }
+            return redirect()->route("index")->with(["deleted" => "Successfully deleted " . $username]);
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }
@@ -153,7 +168,7 @@ class UserController extends Controller
                 "user_id" => $userId,
                 "friend_id" => $friendId,
                 "accepted" => 0,
-                "created_at" => Carbon::now()
+                "created_at" => Carbon::now("Europe/Belgrade")
             ]);
             DB::commit();
             return redirect()->back()->with(["success" => "Successfully sent friend request"]);

@@ -2,9 +2,64 @@
 @section('title')
     {{ $topic->name }}
 @endsection
-@section('content')
-    <h1 style="margin-bottom: 40px"> {{ $topic->name }}</h1>
+@push('styles')
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
 
+        #scroll-to-top {
+            color: #fff;
+            text-decoration: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            font-size: 3em;
+            right: 5%;
+            bottom: 10%;
+            z-index: 1000;
+        }
+
+        #scroll-to-bottom {
+            color: #fff;
+            text-decoration: none;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            font-size: 3em;
+            right: 5%;
+            bottom: 3%;
+            z-index: 1000;
+        }
+
+        textarea {
+            border: none !important;
+            overflow: auto !important;
+            outline: none !important;
+
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+
+            resize: none !important;
+            /*remove the resize handle on the bottom right*/
+        }
+    </style>
+@endpush
+@section('content')
+    <a href="#" id="scroll-to-top" title="Scroll to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <a href="javascript: document.body.scrollIntoView(false);" id="scroll-to-bottom"><i class="fa fa-arrow-down"
+            aria-hidden="true"></i></a>
+    <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts</h1>
+    @if (session('success'))
+        <h3 class="text-success">{{ session('success') }}</h3>
+    @endif
     <div class="row">
         @foreach ($topic->posts as $post)
             @php
@@ -30,7 +85,6 @@
                 @else
                     <img src="{{ asset('img/noavatar.png') }}" class='img img img-fluid' alt="Image" height="50px">
                 @endif
-
                 <div class="mt-2">
                     <p class="mb-0">Total posts: {{ $user->posts->count() }}</p>
                     <p class="mb-0">Phone: {{ $user->phone ?? '/' }}</p>
@@ -40,12 +94,39 @@
                 </div>
             </div>
             <div class="col-md-9 col-lg-9 border p-3" style="min-height: 30vh">
-                <div style="text-align:right;">
+                <div style="text-align:right">
+                    @if (session('user'))
+                        @if (session('user')->is_admin)
+                            <form action="{{ route('topics.destroyPost', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" class="btn btn-danger" value="X">
+                            </form>
+                        @endif
+                    @endif
+
                     {{ date('d.m.Y H:i', strtotime($post->created_at)) }}
                 </div>
                 <br>
-                {{ $post->text }}
+                <p>
+                    {{ $post->text }}
+                </p>
             </div>
         @endforeach
+        @if (session('user'))
+            <div class="col-md-12 col-lg-12 border">
+                <form action="{{ route('posts.store') }}" class="p-5" method="POST">
+                    @csrf
+                    <input type="hidden" name="topicId" value="{{ $topic->id }}">
+                    <div class="form-group">
+                        <label for="post" class="h2">Make new post </label>
+                        <hr>
+                        <textarea name="post" id="post" cols="30" rows="10" class="form-control" minlength="30"></textarea>
+                    </div>
+                    <input type="submit" value="Post" class="btn btn-primary">
+                </form>
+
+            </div>
+        @endif
     </div>
 @endsection

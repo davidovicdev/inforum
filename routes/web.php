@@ -20,4 +20,9 @@ Route::middleware("isLogged")->group(function () {
     Route::put("/users/{id}/acceptFriendRequest", [UserController::class, "acceptFriendRequest"])->name("users.acceptFriendRequest");
     Route::delete("/users/{id}/declineFriendRequest", [UserController::class, "declineFriendRequest"])->name("users.declineFriendRequest");
     Route::post("/logout", [AuthController::class, "logout"])->name("auth.logout");
+    Route::post("/post", [TopicController::class, "storePost"])->name("posts.store");
+    Route::middleware("isAdmin")->group(function () {
+        Route::delete("/posts/{id}", [TopicController::class, "destroyPost"])->name("topics.destroyPost");
+        Route::delete("/topics/{id}", [TopicController::class, "destroy"])->name("topics.destroy");
+    });
 });

@@ -79,7 +79,7 @@ class AuthController extends Controller
                         "password" => md5($request->password),
                         "is_admin" => 0,
                         "is_active" => 1,
-                        "created_at" => Carbon::now(),
+                        "created_at" => Carbon::now("Europe/Belgrade"),
                     ]);
                     DB::commit();
                     $userForSession = new stdClass();
