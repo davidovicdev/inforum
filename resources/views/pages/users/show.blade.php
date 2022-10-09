@@ -87,7 +87,7 @@
             <p><strong>City</strong> : {{ $user->city->name ?? '/' }}</p>
             <p><strong>Date of birth</strong> : {{ $user->date_of_birth ?? '/' }}</p>
             <p><strong>Phone</strong> : {{ $user->phone ?? '/' }}</p>
-            <p><strong>Date of registration</strong> : {{ explode(' ', $user->created_at)[0] }}</p>
+            <p><strong>Date of registration</strong> : {{ date('d.m.Y H:i', strtotime($user->created_at)) }}</p>
             <p><strong>Total posts</strong> : {{ $user->posts_count ?? '0' }}</p>
         </div>
         <div class="col-md-4 col-lg-4">

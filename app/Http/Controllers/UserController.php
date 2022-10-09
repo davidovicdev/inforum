@@ -48,19 +48,21 @@ class UserController extends Controller
             unset($friendIds[$index]);
         }
         $friends = User::whereIn("id", $friendIds)->orderBy('username', "ASC")->get(["id", "username", "is_active"]);
-        /* Is Friend */
         $isFriend = false;
         $isAccepted = false;
-        if (session("user")->id != $id) {
-            $myUsername = User::findOrFail(session("user")->id)->username;
-            foreach ($friends as $friend) {
-                if ($friend->username == $myUsername) {
-                    $isFriend = true;
-                    /* IS ACCEPTED */
-                    if (Friend::where("user_id", $myUsername)->where("friend_id", $friend->username)->where("accepted", 1)->first() || Friend::where("user_id", $friend->username)->where("friend_id", $myUsername)->where("accepted", 1)->first()) {
-                        $isAccepted = true;
+        if (session("user")) {
+
+            if (session("user")->id != $id) {
+                $myUsername = User::findOrFail(session("user")->id)->username;
+                foreach ($friends as $friend) {
+                    if ($friend->username == $myUsername) {
+                        $isFriend = true;
+                        /* IS ACCEPTED */
+                        if (Friend::where("user_id", $myUsername)->where("friend_id", $friend->username)->where("accepted", 1)->first() || Friend::where("user_id", $friend->username)->where("friend_id", $myUsername)->where("accepted", 1)->first()) {
+                            $isAccepted = true;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }

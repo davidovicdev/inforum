@@ -23,10 +23,7 @@ class PageController extends Controller
     {
         return view("pages.contact");
     }
-    public function about()
-    {
-        return view("pages.about");
-    }
+
     public function aboutAuthor()
     {
         return view("pages.aboutAuthor");

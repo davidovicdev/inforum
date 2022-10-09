@@ -8,12 +8,12 @@
             <div class="row d-flex justify-content-around">
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">FOOTER CONTENT</h5>
+                    <h5 class="text-uppercase">INFORUM</h5>
+                    <p class="mt-5">
+                        Best place to post about everthing
+                    </p>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Molestiae modi cum ipsam ad, illo possimus laborum ut
-                        reiciendis obcaecati. Ducimus, quas. Corrupti, pariatur eaque?
-                        Reiciendis assumenda iusto sapiente inventore animi?
+                        Join discussion now
                     </p>
                 </div>
                 <!--Grid column-->

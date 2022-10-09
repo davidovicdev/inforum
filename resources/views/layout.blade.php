@@ -3,7 +3,6 @@ $links = [
     'home' => ['Home', 'index'],
     'users' => ['Users', 'users.index'],
     'contact' => ['Contact', 'contact'],
-    'about' => ['About', 'about'],
     'aboutAuthor' => ['About author', 'aboutAuthor'],
 ];
 $authLinks = [
@@ -16,7 +15,6 @@ $authLinks = [
 
 <head>
     @extends('inc.head')
-
 </head>
 
 <body>
