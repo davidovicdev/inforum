@@ -103,6 +103,6 @@ class AuthController extends Controller
         $user->is_active = 0;
         $user->save();
         session()->flush("user");
-        return redirect()->back();
+        return redirect()->route("auth.login");
     }
 }
