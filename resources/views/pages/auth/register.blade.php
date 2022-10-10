@@ -15,7 +15,7 @@
             <label class="form-label" for="email">Email address</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="date" id="birthDate" name="birthDate" max="2000-01-01" min="1950-01-01"
+            <input type="date" id="birthDate" name="birthDate" max="2007-01-01" min="1950-01-01"
                 value="{{ old('birthDate') }}" class="form-control" required />
             <label class="form-label" for="birthDate">Birth date</label>
         </div>

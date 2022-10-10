@@ -56,7 +56,10 @@
     <a href="#" id="scroll-to-top" title="Scroll to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     <a href="javascript: document.body.scrollIntoView(false);" id="scroll-to-bottom"><i class="fa fa-arrow-down"
             aria-hidden="true"></i></a>
-    <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts</h1>
+        <a href="javascript: document.body.scrollIntoView(false);" class="btn btn-success">New post</a>
+    </div>
     @if (session('success'))
         <h3 class="text-success">{{ session('success') }}</h3>
     @endif
@@ -120,7 +123,8 @@
                     <div class="form-group">
                         <label for="post" class="h2">Make new post </label>
                         <hr>
-                        <textarea name="post" id="post" cols="30" rows="10" class="form-control" minlength="30"></textarea>
+                        <textarea name="post" id="post" cols="30" rows="10" class="form-control" minlength="20"
+                            placeholder="Your post here" required></textarea>
                     </div>
                     <input type="submit" value="Post" class="btn btn-primary">
                 </form>

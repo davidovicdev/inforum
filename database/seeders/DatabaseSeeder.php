@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $seeders = [
             AdditionalDescriptionSeeder::class,
             UsersSeeder::class,
-            CommentsSeeder::class,
             ForumsSeeder::class,
             // FriendsSeeder::class
         ];

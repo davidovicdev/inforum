@@ -6,7 +6,6 @@ use App\Models\Forum;
 use App\Models\Post;
 use App\Models\Topic;
 use App\Models\User;
-
 class PageController extends Controller
 {
     public function index()
