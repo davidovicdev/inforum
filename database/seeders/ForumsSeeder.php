@@ -50,6 +50,7 @@ class ForumsSeeder extends Seeder
                 $topicId = DB::table("topics")->insertGetId([
                     "forum_id" => $forumId,
                     "name" => $topic,
+                    "locked" => rand(0, 1),
                     "created_at" => $faker->dateTimeThisDecade()
                 ]);
                 $postsPerTopic = rand(10, 30);

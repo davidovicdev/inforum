@@ -57,8 +57,28 @@
                         <h4 class="text-success">{{ session('success') }}</h4>
                     @endif
                     @if ($friendship)
-                        @if ($friendship->accepted == 0)
-                            <p class="btn btn-secondary">Pending</p>
+                        @if (session('user')->id == $friendship->user_id)
+                            @if ($friendship->accepted == 0)
+                                <p class="btn btn-secondary mt-3">Pending</p>
+                            @endif
+                        @else
+                            @if ($friendship->accepted == 0)
+                                <div class="d-flex">
+
+                                    <form action="{{ route('users.acceptFriendRequest', $friendship->user_id) }}"
+                                        method="POST" style="margin-right: 5px">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="submit" class="btn btn-success" value="Accept">
+                                    </form>
+                                    <form action="{{ route('users.declineFriendRequest', $friendship->user_id) }}"
+                                        method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input type="submit" class="btn btn-danger" value="Decline">
+                                    </form>
+                                </div>
+                            @endif
                         @endif
                     @else
                         <form action="{{ route('users.sendFriendRequest', $friendId) }}" method="POST">

@@ -29,6 +29,24 @@ $authLinks = [
     <script src="https://kit.fontawesome.com/9b6672c384.js" crossorigin="anonymous" defer></script>
     <script src="{{ asset('js/main.js') }}" type="text/javascript" defer></script>
     @stack('scripts')
+    <script defer>
+        var time = {};
+        var clock = document.getElementById('clock');
+        (function tick() {
+            var minutes, d = new Date();
+            time.weekday = d.getDay();
+            time.day = d.getDate();
+            time.month = d.getMonth() + 1;
+            time.year = d.getFullYear();
+            time.minutes = d.getMinutes();
+            time.hours = d.getHours();
+            time.seconds = d.getSeconds();
+            time.ms = d.getMilliseconds();
+            minutes = (time.minutes < 10 ? '0' + time.minutes : time.minutes);
+            clock.innerHTML = time.hours + ':' + minutes + ' ' + time.month + '.' + time.day + '.' + time.year;
+            window.setTimeout(tick, 1000);
+        }());
+    </script>
 </body>
 
 </html>

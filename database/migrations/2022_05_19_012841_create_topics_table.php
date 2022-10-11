@@ -17,6 +17,7 @@ class CreateTopicsTable extends Migration
             $table->integer('id', true);
             $table->integer('forum_id')->index('fk_topics_forums1_idx');
             $table->string('name', 45)->unique('name_UNIQUE');
+            $table->tinyInteger('locked');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
         });

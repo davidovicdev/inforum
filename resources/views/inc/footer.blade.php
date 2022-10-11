@@ -9,7 +9,7 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">INFORUM</h5>
-                    <p class="mt-5">
+                    <p class="mt-3">
                         Best place to post about everthing
                     </p>
                     <p>

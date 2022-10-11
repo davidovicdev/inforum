@@ -14,7 +14,7 @@
                 @endforeach
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item">Current datetime : @php echo date('H:i d.m.Y') @endphp</li>
+                <li class="nav-item" id="clock"></li>
             </ul>
             <ul class="navbar-nav mr-auto">
                 @if (!session()->has('user'))

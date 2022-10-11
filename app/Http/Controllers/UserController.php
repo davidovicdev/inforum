@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use App\Models\Comment;
 use App\Models\EyeColor;
 use App\Models\Friend;
 use App\Models\Gender;
@@ -13,7 +12,6 @@ use App\Models\Post;
 use App\Models\Profession;
 use App\Models\StatusOfRelationship;
 use App\Models\User;
-use App\Models\UserComment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -73,7 +71,7 @@ class UserController extends Controller
 
             if (session("user")->id == $id) {
 
-                $user = User::find($id);
+                $user = User::findOrFail($id);
                 $gender = Gender::all();
                 $interestedIn = InterestedIn::all();
                 $city = City::all();
@@ -84,9 +82,9 @@ class UserController extends Controller
 
                 return view("pages.users.edit", ["city" => $city, "user" => $user, "gender" => $gender, "interestedIn" => $interestedIn, "eyeColors" => $eyeColors, "hairColors" => $hairColors, "professions" => $professions, "statusOfRelationships" => $statusOfRelationships]);
             } else {
-                http_response_code(404);
+                return abort(404);
             }
-            http_response_code(404);
+            return abort(404);
         }
     }
     public function update(Request $request, $id)
@@ -99,7 +97,7 @@ class UserController extends Controller
             } elseif ($existingUsername && $existingUsername->username != session("user")->username) {
                 return redirect()->back()->with(["error" => "User with that username already exists"]);
             } else {
-                $user = User::find(session("user")->id);
+                $user = User::findOrFail(session("user")->id);
                 if ($request->file("avatar")) {
                     $fileName = time() . '_' . $request->file("avatar")->getClientOriginalName();
                     $request->file("avatar")->move(public_path('uploads'), $fileName);
@@ -138,7 +136,7 @@ class UserController extends Controller
             Friend::where("user_id", $id)->delete();
             Friend::where("friend_id", $id)->delete();
             Post::where("user_id", $id)->delete();
-            $username = User::find($id)->username;
+            $username = User::findOrFail($id)->username;
             User::destroy($id);
             if ($username == session("user")->username) {
                 session()->forget("user");
@@ -153,7 +151,7 @@ class UserController extends Controller
         $friendIds = DB::table("friends")->where("friend_id", $userId)->where("accepted", 0)->get("user_id");
         $friends = [];
         foreach ($friendIds as $friendId) {
-            $friends[] = User::find($friendId->user_id);
+            $friends[] = User::findOrFail($friendId->user_id);
         }
         return view("pages.users.friendRequests", ["friends" => $friends]);
     }

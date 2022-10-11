@@ -99,7 +99,7 @@ class AuthController extends Controller
     }
     public function logout()
     {
-        $user = User::find(session("user")->id);
+        $user = User::findOrFail(session("user")->id);
         $user->is_active = 0;
         $user->save();
         session()->flush("user");

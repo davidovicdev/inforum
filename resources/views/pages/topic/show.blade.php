@@ -57,16 +57,23 @@
     <a href="javascript: document.body.scrollIntoView(false);" id="scroll-to-bottom"><i class="fa fa-arrow-down"
             aria-hidden="true"></i></a>
     <div class="d-flex justify-content-between align-items-center">
-        <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts</h1>
-        @if (session('user'))
-            <a href="javascript: document.body.scrollIntoView(false);" class="btn btn-success">New post</a>
+        <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts
+            @if ($topic->locked)
+                &nbsp;
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            @endif
+        </h1>
+        @if (!$topic->locked)
+            @if (session('user') && $topic->posts->count() >= 1)
+                <a href="javascript: document.body.scrollIntoView(false);" class="btn btn-success">New post</a>
+            @endif
         @endif
     </div>
     @if (session('success'))
         <h3 class="text-success">{{ session('success') }}</h3>
     @endif
     <div class="row">
-        @foreach ($topic->posts as $post)
+        @forelse ($topic->posts as $post)
             @php
                 $user = $post->user;
             @endphp
@@ -116,8 +123,10 @@
                     {{ $post->text }}
                 </p>
             </div>
-        @endforeach
-        @if (session('user'))
+        @empty
+            <h3>No posts</h3>
+        @endforelse
+        @if (session('user') && !$topic->locked)
             <div class="col-md-12 col-lg-12 border">
                 <form action="{{ route('posts.store') }}" class="p-5" method="POST">
                     @csrf

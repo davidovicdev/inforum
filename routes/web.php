@@ -24,5 +24,9 @@ Route::middleware("isLogged")->group(function () {
     Route::delete("/posts/{id}", [TopicController::class, "destroyPost"])->name("topics.destroyPost");
     Route::middleware("isAdmin")->group(function () {
         Route::delete("/topics/{id}", [TopicController::class, "destroy"])->name("topics.destroy");
+        Route::post("/topics/{id}/store", [TopicController::class, "store"])->name("topics.store");
+        Route::get("/topics/{id}/create", [TopicController::class, "create"])->name("topics.create");
+        Route::post("/topics/{id}/lock", [TopicController::class, "lock"])->name("topics.lock");
+        Route::post("/topics/{id}/unlock", [TopicController::class, "unlock"])->name("topics.unlock");
     });
 });

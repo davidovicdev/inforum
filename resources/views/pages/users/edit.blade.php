@@ -23,24 +23,28 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control" value="{{ $user->phone }}">
+                    <input type="text" name="phone" id="phone" class="form-control" value="{{ $user->phone }}"
+                        placeholder="+331 255 8823">
                 </div>
                 <div class="form-group mt-3">
                     <label for="facebook">Facebook</label>
-                    <input type="text" name="facebook" id="facebook" class="form-control" value="{{ $user->facebook }}">
+                    <input type="text" name="facebook" id="facebook" class="form-control" value="{{ $user->facebook }}"
+                        placeholder="Your Facebook link">
                 </div>
                 <div class="form-group mt-3">
                     <label for="twitter">Twitter</label>
-                    <input type="text" name="twitter" id="twitter" class="form-control" value="{{ $user->twitter }}">
+                    <input type="text" name="twitter" id="twitter" class="form-control" value="{{ $user->twitter }}"
+                        placeholder="Your Twitter link">
                 </div>
                 <div class="form-group mt-3">
                     <label for="linkedin">LinkedIn</label>
-                    <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ $user->linkedin }}">
+                    <input type="text" name="linkedin" id="linkedin" class="form-control" value="{{ $user->linkedin }}"
+                        placeholder="Your LinkedIn link">
                 </div>
                 <div class="form-group mt-3">
                     <label for="instagram">Instagram</label>
                     <input type="text" name="instagram" id="instagram" class="form-control"
-                        value="{{ $user->instagram }}">
+                        placeholder="Your Instagram link" value="{{ $user->instagram }}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="avatar">Avatar</label>
@@ -108,7 +112,8 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="about_me_description">About me</label>
-                    <textarea name="about_me_description" id="about_me_description" class="form-control">{{ $user->about_me_description }}</textarea>
+                    <textarea name="about_me_description" id="about_me_description" class="form-control"
+                        placeholder="Description about yourself">{{ $user->about_me_description }}</textarea>
                 </div>
             </div>
         </div>
