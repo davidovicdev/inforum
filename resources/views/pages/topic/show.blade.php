@@ -58,7 +58,9 @@
             aria-hidden="true"></i></a>
     <div class="d-flex justify-content-between align-items-center">
         <h1 style="margin-bottom: 40px"> {{ $topic->name }} - {{ $topic->posts->count() }} posts</h1>
-        <a href="javascript: document.body.scrollIntoView(false);" class="btn btn-success">New post</a>
+        @if (session('user'))
+            <a href="javascript: document.body.scrollIntoView(false);" class="btn btn-success">New post</a>
+        @endif
     </div>
     @if (session('success'))
         <h3 class="text-success">{{ session('success') }}</h3>
