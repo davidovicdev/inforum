@@ -14,6 +14,22 @@ $authLinks = [
 
 <head>
     @extends('inc.head')
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        input,
+        textarea,
+        select,
+        fieldset,
+        div {
+            background-color: #222222 !important;
+            color: #E7F6F2 !important;
+        }
+    </style>
 </head>
 
 <body>
