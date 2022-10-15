@@ -26,6 +26,10 @@ class AuthController extends Controller
             if ($user) {
                 $user = User::select(["id", "username", "email", "is_admin"])->where("email", $request->email)->where("password", md5($request->password))->first();
                 if ($user) {
+                    $userForUpdate = User::find($user->id);
+                    $userForUpdate->is_active = 1;
+                    $userForUpdate->save();
+                    DB::commit();
                     session()->put("user", $user);
                     return redirect()->route("index");
                 } else {
@@ -34,7 +38,6 @@ class AuthController extends Controller
             } else {
                 return redirect()->back()->withInput()->with("message", "Account with that email does not exists");
             }
-            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             echo $th->getMessage();

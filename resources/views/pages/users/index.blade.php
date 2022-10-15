@@ -2,9 +2,6 @@
 @section('title')
     Users
 @endsection
-@push('styles')
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css" />
-@endpush
 @section('content')
     <h1>LIST OF USERS</h1>
     @if (!empty($users))
@@ -31,7 +28,6 @@
     @endif
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function(e) {
             $("#usersTable").DataTable();

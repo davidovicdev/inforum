@@ -24,10 +24,32 @@ $authLinks = [
         input,
         textarea,
         select,
-        fieldset,
-        div {
+        div,
+        ul,
+        li,
+        table,
+        nav {
             background-color: #222222 !important;
-            color: #E7F6F2 !important;
+            color: #bdc0bf !important;
+        }
+
+        tr,
+        td,
+        thead,
+        tbody,
+        table,
+        th,
+        ul,
+        li {
+            border-color: #bdc0bf !important;
+        }
+
+        hr {
+            color: #bdc0bf !important;
+        }
+
+        a {
+            text-decoration: none !important;
         }
     </style>
 </head>
@@ -42,6 +64,7 @@ $authLinks = [
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous" defer>
     </script>
+    <script type="text/javascript" src="{{ asset('js/datatables.js') }}"></script>
     <script src="https://kit.fontawesome.com/9b6672c384.js" crossorigin="anonymous" defer></script>
     <script src="{{ asset('js/main.js') }}" type="text/javascript" defer></script>
     @stack('scripts')

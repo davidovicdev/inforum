@@ -1,8 +1,10 @@
 <tr>
     <td>
         @if ($user->is_active == 1)
+            <span>Online</span>
             <i class="fa-solid fa-circle text-success" title="Active" style="font-size: 1.4em; margin-top:10px"></i>
         @else
+            <span>Offline</span>
             <i class="fa-solid fa-circle text-danger" title="Inactive" style="font-size: 1.4em; margin-top:10px"></i>
         @endif
     </td>
